@@ -1,0 +1,62 @@
+.home {
+  background-color: aliceblue;
+  margin: auto;
+  width: 80%;
+  margin-block-start: 1em;
+  border: 1px solid rgb(113, 113, 111);
+  border-radius: 15px;
+  padding: 0.7em;
+}
+
+.city-details {
+  display: flex;
+  justify-content: space-between;
+  // border: 3px solid pink;
+
+  .city {
+    // border: 3px solid pink;
+    text-align: center;
+    gap: 1.7em;
+    img {
+      width: 120px;
+    }
+
+    .city-name {
+      color: rgb(51, 49, 49);
+      text-decoration: underline;
+    }
+    .country-name {
+      color: gray;
+    }
+  }
+
+  .add-favorite {
+    // border: 3px solid pink;
+    button {
+      border-radius: 15px;
+    }
+  }
+}
+
+.todays-title {
+  text-align: center;
+  font-size: 2.5em;
+  margin: 0.8em 0 0.8em 0;
+}
+
+.days-list {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-evenly;
+
+  // border: 3px solid black;
+  .day {
+    flex-direction: column;
+    text-align: center;
+    border: 2px solid rgb(195, 196, 191);
+    border-radius: 15px;
+    display: flex;
+    margin: 0.5em;
+    padding: 0.8em;
+  }
+}
