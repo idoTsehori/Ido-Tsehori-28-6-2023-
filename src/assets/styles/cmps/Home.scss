@@ -1,7 +1,7 @@
 .home {
   background-color: aliceblue;
   margin: auto;
-  width: 80%;
+  width: 75%;
   margin-block-start: 1em;
   border: 1px solid rgb(113, 113, 111);
   border-radius: 15px;
@@ -16,9 +16,12 @@
   .city {
     // border: 3px solid pink;
     text-align: center;
-    gap: 1.7em;
+    gap: 3em;
     img {
-      width: 120px;
+      width: 12em;
+      height: 12em;
+      border-radius: 50%;
+      box-shadow: 0px 10px 15px -3px rgba(0, 0, 0, 0.1), 0px 10px 15px -3px rgba(0, 0, 0, 0.1);
     }
 
     .city-name {
@@ -34,6 +37,7 @@
     // border: 3px solid pink;
     button {
       border-radius: 15px;
+      font-size: 1em;
     }
   }
 }
@@ -51,12 +55,20 @@
 
   // border: 3px solid black;
   .day {
+    background-color: lighten($clr1, 14%);
+    color: aliceblue;
+    font-size: 1.1em;
     flex-direction: column;
     text-align: center;
     border: 2px solid rgb(195, 196, 191);
     border-radius: 15px;
     display: flex;
     margin: 0.5em;
-    padding: 0.8em;
+    padding: 0.5em 2.5em 0.5em 2.5em;
+    box-shadow: 0px 10px 15px -3px rgba(0, 0, 0, 0.1), 0px 10px 15px -3px rgba(0, 0, 0, 0.1);
+    &:hover {
+      transition: 0.5s;
+      background-color: $clr2;
+    }
   }
 }
