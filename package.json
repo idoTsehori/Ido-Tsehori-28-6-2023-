@@ -11,6 +11,8 @@
   },
   "dependencies": {
     "axios": "^0.27.2",
+    "element-plus": "^2.3.7",
+    "lodash.debounce": "^4.0.8",
     "sass": "^1.53.0",
     "vue": "^3.2.37",
     "vue-router": "^4.1.2",

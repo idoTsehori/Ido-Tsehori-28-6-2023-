@@ -1,22 +1,26 @@
 <template>
   <section class="city-search">
-    <label for="city">
-      Search:
-      <input @input="this.searchCities" v-model="userInput" id="city" name="city" type="text" />
-      <ul v-if="suggestions" class="suggestion-list">
-        <li
-          v-for="suggestion in suggestions"
-          :key="suggestion.Key"
-          @click="selectSuggestion(suggestion)">
-          {{ suggestion.LocalizedName }}
-        </li>
-      </ul>
-    </label>
+    <form @submit.prevent="selectSuggestion">
+      <label for="city"> Search for your city: </label>
+      <input @input="debouncedSearchCities" v-model="userInput" id="city" name="city" type="text" />
+      <button type="submit">Search</button>
+    </form>
+
+    <ul v-if="suggestions" class="suggestion-list">
+      <li
+        v-for="suggestion in suggestions"
+        :key="suggestion.Key"
+        @click="selectSuggestion(suggestion)">
+        {{ suggestion.LocalizedName }}
+      </li>
+    </ul>
   </section>
 </template>
 
 <script>
 import axios from 'axios'
+import debounce from 'lodash.debounce'
+
 export default {
   name: 'CitySearch',
   data() {
@@ -26,6 +30,10 @@ export default {
     }
   },
   methods: {
+    debouncedSearchCities: debounce(function (ev) {
+      this.searchCities(ev)
+    }, 1200),
+
     async searchCities(ev) {
       this.userInput = ev.target.value
 
@@ -46,37 +54,20 @@ export default {
         console.error(error)
       }
     },
+
+    // submitForm(ev) {
+    //   console.log('ev:', ev)
+    // },
+
     selectSuggestion(suggestion) {
-      console.log('Selected suggestion:', suggestion)
+      console.log('suggestion:', suggestion)
       this.suggestions = null
       this.userInput = ''
       this.$emit('changeCity', suggestion)
     },
   },
-  computed: {},
-  created() {},
-  components: {},
   emits: ['changeCity'],
+
+  components: {},
 }
 </script>
-
-<style>
-.suggestion-list {
-  position: absolute;
-  list-style-type: none;
-  padding: 0;
-  margin: 0;
-  background-color: #f9f9f9;
-  border: 1px solid #ddd;
-  border-top: none;
-}
-
-.suggestion-list li {
-  padding: 8px;
-  cursor: pointer;
-}
-
-.suggestion-list li:hover {
-  background-color: #e9e9e9;
-}
-</style>
