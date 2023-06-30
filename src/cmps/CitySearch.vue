@@ -29,6 +29,7 @@ export default {
       suggestions: null,
     }
   },
+
   methods: {
     debouncedSearchCities: debounce(function (ev) {
       this.searchCities(ev)
@@ -55,10 +56,6 @@ export default {
       }
     },
 
-    // submitForm(ev) {
-    //   console.log('ev:', ev)
-    // },
-
     selectSuggestion(suggestion) {
       console.log('suggestion:', suggestion)
       this.suggestions = null
@@ -66,8 +63,7 @@ export default {
       this.$emit('changeCity', suggestion)
     },
   },
-  emits: ['changeCity'],
 
-  components: {},
+  emits: ['changeCity'],
 }
 </script>

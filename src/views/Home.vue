@@ -21,7 +21,7 @@
     <h1 class="todays-title">{{ this.currCity.WeatherText }}</h1>
 
     <div v-if="this.days.length" class="days-list">
-      <article v-for="day in days" class="day">
+      <article :key="day.EpochDate" v-for="day in days" class="day">
         <DayPreview :day="day" />
       </article>
     </div>
@@ -29,10 +29,10 @@
 </template>
 
 <script>
+import axios from 'axios'
 import CitySearch from '../cmps/CitySearch.vue'
 import DayPreview from '../cmps/DayPreview.vue'
 import { localStorageService } from '../services/storage.service'
-import axios from 'axios'
 import { useToast } from 'vue-toast-notification'
 import { API_KEY, UNSPLASH_KEY } from '../../config'
 
@@ -53,6 +53,12 @@ export default {
       this.currCity = defaultCity
       this.days = defaultDays
     } else {
+      this.fetchDefaultCity()
+    }
+  },
+
+  methods: {
+    async fetchDefaultCity() {
       try {
         await this.searchCity()
         await this.setCityTemp()
@@ -66,10 +72,8 @@ export default {
         console.log('error:', error)
         console.log('refresh')
       }
-    }
-  },
+    },
 
-  methods: {
     async searchCity(cityName = 'Tel Aviv') {
       const url = 'http://dataservice.accuweather.com/locations/v1/cities/search'
       try {
@@ -115,7 +119,6 @@ export default {
           `http://dataservice.accuweather.com/forecasts/v1/daily/5day//${key}?apikey=${API_KEY}`
         )
         const res = Array.from(data.DailyForecasts)
-        console.log('res:', res)
         this.days = res
       } catch (error) {
         console.error(error)
@@ -125,7 +128,6 @@ export default {
 
     changeCity(val) {
       this.currCity = val
-      this.setCityTemp()
       this.setCityTemp(this.currCity.Key)
       this.getCityImg(this.currCity.img)
     },
