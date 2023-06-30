@@ -1,15 +1,23 @@
-import { localStorageService } from '../services/storage.service'
+import { cityService as cityService } from '../services/city.service'
 
 export const cityStore = {
   state() {
     return {
+      currCity: null,
       favCities: [],
     }
   },
   mutations: {
     setFavCities(state, { cities }) {
-      console.log('cities:', cities)
       state.favCities = cities
+    },
+
+    addCityToFavorites(state, { city }) {
+      state.favCities.push(city)
+    },
+
+    setCity(state, { city }) {
+      state.currCity = city
     },
 
     removeToy({ toys }, { toyId }) {
@@ -25,48 +33,39 @@ export const cityStore = {
     },
   },
   getters: {
-    favCityById:
-      ({ toys }) =>
-      (toyId) => {
-        return { ...toys.find((toy) => toy._id === toyId) }
-      },
-    favCities({ cities }) {
-      return toys
+    getCurrCity({ currCity }) {
+      return currCity
+    },
+
+    getFavCities({ favCities }) {
+      return favCities
     },
   },
+
   actions: {
-    loadFavCities({ commit }) {
-      const cities = localStorageService.load('favCities')
-      if (!cities) return
-      commit({ type: 'setFavCities', cities })
+    loadDefaultCity({ state, commit }) {
+      return cityService.query().then((city) => {
+        commit({ type: 'setCity', city })
+        return city
+      })
     },
-    // saveFavCity({ commit, dispatch }, { city }) {
-    //   const type = toy._id ? 'updateToy' : 'addToy'
-    //   return toyService
-    //     .save(toy)
-    //     .then((savedToy) => {
-    //       commit({ type, toy: savedToy })
-    //       // const txt= `${toy._id?'Updated':'Added'} toy: ${savedToy.txt}`
-    //       // dispatch({type:'addActivity',txt})
-    //     })
-    //     .catch((err) => {
-    //       console.error('Cannot save toy', err)
-    //       throw err
-    //     })
-    // },
-    // removeFavCity({ commit, dispatch, getters }, { cityId }) {
-    //   return toyService
-    //     .remove(cityId)
-    //     .then(() => {
-    //       // const removedToy= getters.toyById(toyId)
-    //       commit({ type: 'removeToy', toyId })
-    //       // const txt= `Removed toy: ${removedToy.txt}`
-    //       // dispatch({type:'addActivity',txt})
-    //     })
-    //     .catch((err) => {
-    //       console.error('Cannot remove toy', err)
-    //       throw err
-    //     })
-    // },
+
+    loadFavCities({ commit }) {
+      return cityService.getFavCities().then((cities) => {
+        if (cities) commit({ type: 'setFavCities', cities })
+      })
+    },
+
+    changeCity({ commit }, { city }) {
+      return cityService.save(city).then((city) => {
+        commit({ type: 'setCity', city })
+      })
+    },
+
+    addCityToFavorites({ commit }, { city }) {
+      return cityService.saveCityToFavorites(city).then((cities) => {
+        commit({ type: 'addCityToFavorites', city })
+      })
+    },
   },
 }

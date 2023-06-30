@@ -18,8 +18,8 @@
 </template>
 
 <script>
-import axios from 'axios'
 import debounce from 'lodash.debounce'
+import { cityService } from '../services/city.service'
 
 export default {
   name: 'CitySearch',
@@ -27,37 +27,16 @@ export default {
     return {
       userInput: '',
       suggestions: null,
+      debouncedSearchCities: debounce(this.searchCities, 1000),
     }
   },
 
   methods: {
-    debouncedSearchCities: debounce(function (ev) {
-      this.searchCities(ev)
-    }, 1200),
-
-    async searchCities(ev) {
-      this.userInput = ev.target.value
-
-      const apiKey = 'V8HnHdRU0wGAHHGaANMWYsia8qFlmjyo'
-      const url = 'http://dataservice.accuweather.com/locations/v1/cities/autocomplete'
-
-      try {
-        const res = await axios.get(url, {
-          params: {
-            apikey: apiKey,
-            q: this.userInput,
-            language: 'en',
-          },
-        })
-        this.suggestions = res.data
-        console.log('this.suggestions', this.suggestions)
-      } catch (error) {
-        console.error(error)
-      }
+    async searchCities() {
+      this.suggestions = await cityService.searchCitySuggestions(this.userInput)
     },
 
     selectSuggestion(suggestion) {
-      console.log('suggestion:', suggestion)
       this.suggestions = null
       this.userInput = ''
       this.$emit('changeCity', suggestion)

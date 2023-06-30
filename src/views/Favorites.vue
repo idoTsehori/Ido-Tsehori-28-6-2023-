@@ -1,15 +1,19 @@
 <template>
-  <div>hey</div>
+  <section>{{ favCities }}</section>
 </template>
 
 <script>
 export default {
-  name: '',
+  name: 'Favorites',
   data() {
     return {}
   },
   methods: {},
-  computed: {},
+  computed: {
+    favCities() {
+      return this.$store.getters.getFavCities
+    },
+  },
   created() {},
   components: {},
 }
