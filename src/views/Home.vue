@@ -1,7 +1,7 @@
 <template>
   <CitySearch @changeCity="changeCity" />
 
-  <section class="home" v-if="currCity">
+  <section class="basic-container" v-if="currCity">
     <div class="city-details">
       <div class="city flex align-center">
         <img :src="currCity.img" alt="logo" />

@@ -1,0 +1,53 @@
+.fav-cities-title {
+  text-decoration: underline;
+  font-size: 1.5em;
+  text-align: center;
+  margin-block-end: 2em;
+}
+
+.favCity {
+  position: relative;
+  text-align: center;
+
+  img {
+    border-radius: 15px;
+    width: 100%;
+    height: 100%;
+    opacity: 0.5;
+    object-fit: cover;
+  }
+  .city-name {
+    position: absolute;
+    right: 25%;
+    top: 10%;
+    font-size: 1.5em;
+    margin: 0;
+  }
+  .temp {
+    position: absolute;
+    top: 50%;
+    left: 35%;
+  }
+  .temp-info {
+    position: absolute;
+    top: 80%;
+    left: 18%;
+  }
+  &:hover {
+    img {
+      opacity: 1;
+      transition: 0.2s;
+    }
+    .city-name {
+      scale: 1.3;
+      background: rgba(240, 248, 255, 0.522);
+      color: $clr1;
+    }
+    .temp {
+      background: rgba(240, 248, 255, 0.522);
+    }
+    .temp-info {
+      background: rgba(240, 248, 255, 0.522);
+    }
+  }
+}
