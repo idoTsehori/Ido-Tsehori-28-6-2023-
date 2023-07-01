@@ -2,7 +2,13 @@
   <section class="city-search">
     <form @submit.prevent="searchCity">
       <label for="city"> Search for your city: </label>
-      <input @input="debouncedSearchCities" v-model="userInput" id="city" name="city" type="text" />
+      <input
+        @input="debouncedSearchCities"
+        placeholder="Write here ..."
+        v-model="userInput"
+        id="city"
+        name="city"
+        type="text" />
       <button class="serach-btn" type="submit">
         <svg viewBox="0 0 1024 1024" xmlns="http://www.w3.org/2000/svg" data-v-ea893728="">
           <path

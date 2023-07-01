@@ -4,9 +4,9 @@
       <el-menu-item>
         <img
           src="https://spinomenal.com/wp-content/uploads/2021/01/spinomenal_logo.png"
-          alt=""
-          srcset="" />
+          alt="spinomental logo" />
       </el-menu-item>
+      <DarkModeToggle />
     </div>
     <div>
       <el-menu-item index="1"><RouterLink to="/">Home</RouterLink></el-menu-item>
@@ -18,20 +18,19 @@
       </el-sub-menu>
     </div>
   </el-menu>
-  <!-- <header>
-    <nav>
-      <RouterLink to="/">Home</RouterLink>
-      <RouterLink to="/favorites">Favorites</RouterLink>
-    </nav>
-  </header> -->
 </template>
 
 <script>
+import DarkModeToggle from './DarkModeToggle.vue'
 export default {
   data() {
     return {
       activeIndex: '1',
     }
+  },
+
+  components: {
+    DarkModeToggle,
   },
 }
 </script>

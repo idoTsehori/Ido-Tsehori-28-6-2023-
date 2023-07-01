@@ -2,7 +2,6 @@
   background-color: aliceblue;
   margin: auto;
   width: 90vw;
-  // margin-block-start: 0.5em;
   border: 1px solid rgb(113, 113, 111);
   border-radius: 15px;
   padding: 0.7em;
@@ -11,10 +10,8 @@
 .city-details {
   display: flex;
   justify-content: space-between;
-  // border: 3px solid pink;
 
   .city {
-    // border: 3px solid pink;
     text-align: center;
     gap: 3em;
     img {
@@ -35,7 +32,6 @@
   }
 
   .add-favorite {
-    // border: 3px solid pink;
     button {
       border-radius: 15px;
       font-size: 1em;
@@ -57,7 +53,6 @@
   flex-wrap: wrap;
   justify-content: space-evenly;
 
-  // border: 3px solid black;
   .day {
     background-color: lighten($clr1, 14%);
     color: aliceblue;
@@ -73,6 +68,28 @@
     &:hover {
       transition: 0.5s;
       background-color: $clr2;
+    }
+  }
+}
+
+// DARK MODE:
+body.dark-mode {
+  .basic-container {
+    background-color: rgb(145, 145, 142);
+  }
+
+  .add-favorite {
+    button {
+      background-color: $clr3;
+    }
+  }
+  .day {
+    background-color: lighten($clr3, 20%);
+    border: 1px solid rgb(81, 80, 80);
+    color: aliceblue;
+    &:hover {
+      transition: 0.5s;
+      background-color: $clr1;
     }
   }
 }

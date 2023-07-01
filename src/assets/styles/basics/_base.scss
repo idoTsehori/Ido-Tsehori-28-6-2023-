@@ -12,15 +12,14 @@ html {
 
   line-height: 1.6;
   color: rgb(51, 49, 49);
-  // background: radial-gradient(circle, rgba(160, 78, 157, 0.6317583185617996) 36%, #33bdd69f 82%);
+}
+
+body {
   background: radial-gradient(
     circle,
     rgba(160, 78, 157, 0.17237456506039917) 36%,
     rgba(51, 189, 214, 0.2003857695421919) 82%
   );
-}
-
-body {
   font-size: rem(18px);
   margin: 0;
 }
