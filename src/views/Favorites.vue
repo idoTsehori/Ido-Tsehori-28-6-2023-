@@ -3,7 +3,7 @@
     <h1 class="fav-cities-title">Favorite Cities</h1>
     <div class="days-list">
       <article v-for="city in favCities" :key="city._id" class="favCity">
-        <CityPreview :city="city" />
+        <CityPreview :city="city" @city-selected="setCurrCity" />
       </article>
     </div>
   </section>
@@ -15,16 +15,18 @@
 import CityPreview from '../cmps/CityPreview.vue'
 export default {
   name: 'Favorites',
-  data() {
-    return {}
+
+  methods: {
+    setCurrCity(city) {
+      console.log('city:', city)
+      // I need to get the clicked city
+    },
   },
-  methods: {},
   computed: {
     favCities() {
       return this.$store.getters.getFavCities
     },
   },
-  created() {},
   components: {
     CityPreview,
   },

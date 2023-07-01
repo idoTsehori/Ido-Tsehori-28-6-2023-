@@ -53,8 +53,7 @@ export const cityStore = {
 
     loadFavCities({ commit }) {
       return cityService.getFavCities().then((cities) => {
-        console.log('cities:', cities)
-        if (cities) commit({ type: 'setFavCities', cities })
+        if (cities.length) commit({ type: 'setFavCities', cities })
       })
     },
 

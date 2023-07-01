@@ -1,0 +1,18 @@
+.animation-container {
+  position: fixed;
+  bottom: 0px;
+  z-index: 9999;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  pointer-events: none;
+}
+.animated-image {
+  width: 300px;
+  opacity: 0;
+  transition: opacity 0.8s ease-in-out;
+}
+
+.visible {
+  opacity: 1;
+}

@@ -1,7 +1,7 @@
 import { storageService } from './async-storage.service'
 import { API_KEY, UNSPLASH_KEY } from '../../config'
 import axios from 'axios'
-// import { utilService } from './util.service'
+import { utilService } from './util.service'
 // import { useToast } from 'vue-toast-notification'
 
 export const cityService = {
@@ -39,17 +39,15 @@ async function query() {
 }
 
 async function getFavCities() {
-  return await storageService.query(FAV_CITIES_KEY)
+  const favCities = await storageService.query(FAV_CITIES_KEY)
+  return favCities || utilService.saveToStorage(FAV_CITIES_KEY, [])
 }
 
 async function saveCityToFavorites(city) {
   const cities = await getFavCities()
-  console.log('cities:', cities)
-  if (!cities) return storageService.post(FAV_CITIES_KEY, city)
   const foundCity = cities.find((favCity) => favCity._id === city)
-  if (!foundCity) return null
-  console.log('here?')
-  return storageService.post(FAV_CITIES_KEY, foundCity)
+  if (foundCity) return null
+  return storageService.post(FAV_CITIES_KEY, city)
 }
 
 async function searchCity(cityName = 'Tel Aviv') {

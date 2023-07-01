@@ -20,29 +20,16 @@ function get(entityType, entityId) {
   })
 }
 
-// function post(entityType, newEntity) {
-//   newEntity._id = _makeId()
-//   _save(entityType, newEntity)
-//   return newEntity
-// }
 function post(entityType, newEntity) {
-  newEntity._id = _makeId()
-
-  console.log('lol')
+  let updatedEntity = { ...newEntity, _id: _makeId() }
   if (entityType === 'FavoriteCities') {
-    return query(entityType).then((entities) => {
-      console.log('entities:', entities)
-      if (entities) {
-        entities.push(newEntity)
-        _save(entityType, entities)
-      } else {
-        _save(entityType, [newEntity])
-      }
+    return query(entityType).then((favCities) => {
+      updatedEntity = favCities.concat(updatedEntity)
+      _save(entityType, updatedEntity)
     })
-  } else if (entityType === 'DefaultCity') {
-    _save(entityType, newEntity)
   }
-  return newEntity
+  _save(entityType, updatedEntity)
+  return updatedEntity
 }
 
 function put(entityType, updatedEntity) {
