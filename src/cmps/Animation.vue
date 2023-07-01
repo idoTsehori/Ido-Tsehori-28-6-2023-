@@ -18,8 +18,8 @@ export default {
       this.isVisible = true
       setTimeout(() => {
         this.isVisible = false
-      }, 2000)
-    }, 15000)
+      }, 3000)
+    }, 16500)
   },
 }
 </script>

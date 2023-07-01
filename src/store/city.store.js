@@ -17,6 +17,7 @@ export const cityStore = {
     },
 
     setCity(state, { city }) {
+      console.log('I did it', city)
       state.currCity = city
     },
 
@@ -44,6 +45,10 @@ export const cityStore = {
   },
 
   actions: {
+    setNewCity({ commit }, { city }) {
+      commit({ type: 'setCity', city })
+    },
+
     loadDefaultCity({ state, commit }) {
       return cityService.query().then((city) => {
         commit({ type: 'setCity', city })

@@ -18,8 +18,8 @@ export default {
 
   methods: {
     setCurrCity(city) {
-      console.log('city:', city)
-      // I need to get the clicked city
+      this.$store.dispatch({ type: 'setNewCity', city })
+      this.$router.push('/')
     },
   },
   computed: {

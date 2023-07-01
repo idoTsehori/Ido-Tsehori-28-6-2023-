@@ -15,9 +15,8 @@ export default {
       type: Object,
       required: true,
     },
-
-    emits: ['city-selected'],
   },
+  emits: ['city-selected'],
 }
 </script>
 <style></style>
