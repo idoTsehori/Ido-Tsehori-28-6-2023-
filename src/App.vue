@@ -12,6 +12,7 @@ import AppHeader from './cmps/AppHeader.vue'
 export default {
   created() {
     console.log('Vue App created')
+
     this.$store.dispatch({ type: 'loadFavCities' })
     this.$store.dispatch({ type: 'loadDefaultCity' })
   },

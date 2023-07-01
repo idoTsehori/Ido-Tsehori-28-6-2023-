@@ -32,6 +32,7 @@ export const cityStore = {
       state.toys.unshift(toy)
     },
   },
+
   getters: {
     getCurrCity({ currCity }) {
       return currCity

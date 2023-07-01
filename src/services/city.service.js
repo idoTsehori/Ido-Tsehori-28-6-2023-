@@ -45,7 +45,7 @@ async function getFavCities() {
 async function saveCityToFavorites(city) {
   const cities = await getFavCities()
   console.log('cities:', cities)
-  if (!cities) return storageService.post(FAV_CITIES_KEY, [city])
+  if (!cities) return storageService.post(FAV_CITIES_KEY, city)
   const foundCity = cities.find((favCity) => favCity._id === city)
   if (!foundCity) return null
   console.log('here?')

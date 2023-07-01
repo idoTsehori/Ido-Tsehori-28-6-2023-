@@ -26,17 +26,20 @@ function get(entityType, entityId) {
 //   return newEntity
 // }
 function post(entityType, newEntity) {
-  console.log('entityType:', entityType)
   newEntity._id = _makeId()
 
+  console.log('lol')
   if (entityType === 'FavoriteCities') {
-    console.log('here?')
     return query(entityType).then((entities) => {
-      entities.push(newEntity)
-      _save(entityType, entities)
+      console.log('entities:', entities)
+      if (entities) {
+        entities.push(newEntity)
+        _save(entityType, entities)
+      } else {
+        _save(entityType, [newEntity])
+      }
     })
-  } else {
-    newEntity._id = _makeId()
+  } else if (entityType === 'DefaultCity') {
     _save(entityType, newEntity)
   }
   return newEntity
