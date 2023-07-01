@@ -17,7 +17,6 @@ export const cityStore = {
     },
 
     setCity(state, { city }) {
-      console.log('I did it', city)
       state.currCity = city
     },
 
@@ -63,6 +62,7 @@ export const cityStore = {
     },
 
     changeCity({ commit }, { city }) {
+      console.log('city:', city)
       return cityService.save(city).then((city) => {
         commit({ type: 'setCity', city })
       })

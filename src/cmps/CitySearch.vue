@@ -1,6 +1,6 @@
 <template>
   <section class="city-search">
-    <form @submit.prevent="selectSuggestion">
+    <form @submit.prevent="searchCity">
       <label for="city"> Search for your city: </label>
       <input @input="debouncedSearchCities" v-model="userInput" id="city" name="city" type="text" />
       <button type="submit">Search</button>
@@ -34,6 +34,13 @@ export default {
   methods: {
     async searchCities() {
       this.suggestions = await cityService.searchCitySuggestions(this.userInput)
+    },
+    searchCity(ev) {
+      ev.preventDefault()
+      console.log('this.userInput', this.userInput)
+      this.$emit('changeCity', this.userInput)
+      this.suggestions = null
+      this.userInput = ''
     },
 
     selectSuggestion(suggestion) {

@@ -2,7 +2,7 @@ import { storageService } from './async-storage.service'
 import { API_KEY, UNSPLASH_KEY } from '../../config'
 import axios from 'axios'
 import { utilService } from './util.service'
-// import { useToast } from 'vue-toast-notification'
+import { useToast } from 'vue-toast-notification'
 
 export const cityService = {
   query,
@@ -60,6 +60,7 @@ async function searchCity(cityName = 'Tel Aviv') {
         language: 'en',
       },
     })
+    if (!data.length) return null
 
     return data[0]
   } catch (error) {
@@ -119,72 +120,22 @@ async function searchCitySuggestions(val) {
 }
 
 async function save(city) {
-  const { LocalizedName, Key } = city
+  const { LocalizedName = city } = city
   try {
     const newCity = await searchCity(LocalizedName)
-    const { temp, WeatherText } = await setCityTemp(Key)
-    const fiveDaysTemp = await setCity5DaysTemp(Key)
+    if (!newCity) return
+    const { temp, WeatherText } = await setCityTemp(newCity.Key)
+    const fiveDaysTemp = await setCity5DaysTemp(newCity.Key)
     const img = await getCityImg(LocalizedName)
 
     newCity.temp = temp
     newCity.WeatherText = WeatherText
     newCity.days = fiveDaysTemp
     newCity.img = img
-
     return storageService.post('DefaultCity', newCity)
   } catch (error) {
+    // let toast = useToast().error(`${this.currCity.LocalizedName} added to favorites`)
     console.log('error:', error)
     console.log('refresh')
   }
 }
-
-// function getById(guitarId) {
-//   return httpService.get(API + guitarId)
-// }
-
-// function remove(guitarId) {
-//   return httpService.delete(API + guitarId)
-// }
-
-// function getEmptyGuitar() {
-//   return {
-//     // _id: '',
-//     name: '',
-//     price: null,
-//     labels: [],
-//     img: 'imgs/no_pic_symbol.jpg',
-//     // createdAt: new Date(Date.now()).toLocaleString(),
-//     createdAt: '',
-//     inStock: true,
-//   }
-// }
-
-// function _createGuitars() {
-//   var guitars = JSON.parse(localStorage.getItem(KEY))
-//   if (!guitars || !guitars.length) {
-//     guitars = [
-//       _createguitar(
-//         'Talking Doll',
-//         123,
-//         ['Doll', 'Battery Powered', 'Baby'],
-//         ['Good', 'Nice', 'Fun'],
-//         true
-//       ),
-//       _createguitar('Ball', 50, ['Outdoor', 'Baby'], ['Amazing!'], false),
-//       _createguitar('Cards', 250, ['Box game'], ['wow!', 'awesome'], true),
-//     ]
-//     localStorage.setItem(KEY, JSON.stringify(guitars))
-//   }
-// }
-
-// function _createGuitar(name, price, labels, reviews, inStock = true) {
-//   return {
-//     _id: utilService.makeId(),
-//     name,
-//     price,
-//     labels,
-//     inStock,
-//     createdAt: new Date(Date.now()).toLocaleString(),
-//     reviews: reviews,
-//   }
-// }
