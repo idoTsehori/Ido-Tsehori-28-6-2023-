@@ -9,8 +9,8 @@ export const cityService = {
   searchCitySuggestions,
   getFavCities,
   saveCityToFavorites,
+  removeFavCity,
   // getById,
-  // remove,
   // getEmptyCity,
 }
 
@@ -70,7 +70,7 @@ async function searchCity(cityName = 'Tel Aviv') {
 
 async function getCityImg(city) {
   const { data } = await axios(
-    `https://api.unsplash.com/photos/random?query=${city}&client_id=${UNSPLASH_KEY}`
+    `https://api.unsplash.com/photos/random?query=${city}-city&client_id=${UNSPLASH_KEY}`
   )
   return data.urls.thumb
 }
@@ -145,4 +145,8 @@ async function save(city) {
     console.log('error:', error)
     console.log('refresh')
   }
+}
+
+async function removeFavCity(cityId) {
+  return storageService.remove(FAV_CITIES_KEY, cityId)
 }

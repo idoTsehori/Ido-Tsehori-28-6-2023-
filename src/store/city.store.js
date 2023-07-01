@@ -61,10 +61,9 @@ export const cityStore = {
       })
     },
 
-    changeCity({ commit }, { city }) {
-      console.log('city:', city)
-      return cityService.save(city).then((newCity) => {
-        if (newCity) commit({ type: 'setCity', newCity })
+    changeCity({ commit }, { newCity }) {
+      return cityService.save(newCity).then((city) => {
+        if (city) commit({ type: 'setCity', city })
         else console.log(`${newCity} is not found`)
       })
     },
@@ -73,6 +72,12 @@ export const cityStore = {
       return cityService.saveCityToFavorites(city).then((cities) => {
         commit({ type: 'addCityToFavorites', city })
       })
+    },
+
+    async removeFavCity({ commit }, { cityId }) {
+      const cities = await cityService.removeFavCity(cityId)
+      console.log('cities:', cities)
+      commit({ type: 'setFavCities', cities })
     },
   },
 }

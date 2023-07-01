@@ -21,7 +21,7 @@ function get(entityType, entityId) {
 }
 
 function post(entityType, newEntity) {
-  let updatedEntity = { ...newEntity, _id: _makeId() }
+  let updatedEntity = newEntity._id ? newEntity : { ...newEntity, _id: _makeId() }
   if (entityType === 'FavoriteCities') {
     return query(entityType).then((favCities) => {
       updatedEntity = favCities.concat(updatedEntity)
@@ -57,7 +57,6 @@ function remove(entityType, entityId) {
 }
 
 // Private functions
-
 function _save(entityType, entity) {
   localStorage.setItem(entityType, JSON.stringify(entity))
   // localStorage.setItem(entityType, entity)

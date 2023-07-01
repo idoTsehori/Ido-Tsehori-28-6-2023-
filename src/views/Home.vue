@@ -42,13 +42,11 @@ export default {
   name: 'Home',
 
   methods: {
-    changeCity(city) {
-      this.$store.dispatch({ type: 'changeCity', city })
+    changeCity(newCity) {
+      this.$store.dispatch({ type: 'changeCity', newCity })
     },
 
     addCityToFavorites() {
-      // CHATGPT! I WANT MY MODEL HERE! ("ADDED TO FAVORITES")
-
       const city = this.currCity
       this.$store.dispatch({ type: 'addCityToFavorites', city })
     },

@@ -3,7 +3,7 @@
     <h1 class="fav-cities-title">Favorite Cities</h1>
     <div class="days-list">
       <article v-for="city in favCities" :key="city._id" class="favCity">
-        <CityPreview :city="city" @city-selected="setCurrCity" />
+        <CityPreview :city="city" @city-selected="setCurrCity" @removeFavCity="removeFavCity" />
       </article>
     </div>
   </section>
@@ -17,6 +17,10 @@ export default {
   name: 'Favorites',
 
   methods: {
+    removeFavCity(cityId) {
+      this.$store.dispatch({ type: 'removeFavCity', cityId })
+    },
+
     setCurrCity(city) {
       this.$store.dispatch({ type: 'setNewCity', city })
       this.$router.push('/')
