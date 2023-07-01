@@ -2,7 +2,6 @@ import { storageService } from './async-storage.service'
 import { API_KEY, UNSPLASH_KEY } from '../../config'
 import axios from 'axios'
 import { utilService } from './util.service'
-import { useToast } from 'vue-toast-notification'
 
 export const cityService = {
   query,
@@ -60,8 +59,9 @@ async function searchCity(cityName = 'Tel Aviv') {
         language: 'en',
       },
     })
-    if (!data.length) return null
-
+    if (!data.length) {
+      return null
+    }
     return data[0]
   } catch (error) {
     console.error(error)
@@ -132,9 +132,16 @@ async function save(city) {
     newCity.WeatherText = WeatherText
     newCity.days = fiveDaysTemp
     newCity.img = img
+
     return storageService.post('DefaultCity', newCity)
   } catch (error) {
-    // let toast = useToast().error(`${this.currCity.LocalizedName} added to favorites`)
+    this.$swal.fire({
+      position: 'top-end',
+      icon: 'error',
+      title: `error saving the city`,
+      showConfirmButton: false,
+      timer: 1000,
+    })
     console.log('error:', error)
     console.log('refresh')
   }

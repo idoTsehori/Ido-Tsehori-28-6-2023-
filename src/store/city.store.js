@@ -63,8 +63,9 @@ export const cityStore = {
 
     changeCity({ commit }, { city }) {
       console.log('city:', city)
-      return cityService.save(city).then((city) => {
-        commit({ type: 'setCity', city })
+      return cityService.save(city).then((newCity) => {
+        if (newCity) commit({ type: 'setCity', newCity })
+        else console.log(`${newCity} is not found`)
       })
     },
 
