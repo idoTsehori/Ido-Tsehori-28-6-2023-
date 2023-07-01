@@ -8,6 +8,7 @@
 .favCity {
   position: relative;
   text-align: center;
+  cursor: pointer;
 
   img {
     border-radius: 15px;
@@ -16,38 +17,38 @@
     opacity: 0.5;
     object-fit: cover;
   }
+
+  div {
+    margin: auto;
+    position: absolute;
+    text-align: center;
+    left: 0;
+    right: 0;
+    display: flex;
+    flex-direction: column;
+  }
   .city-name {
-    position: absolute;
-    right: 25%;
-    top: 10%;
-    font-size: 1.5em;
-    margin: 0;
+    scale: 1.3;
   }
-  .temp {
-    position: absolute;
-    top: 50%;
-    left: 35%;
-  }
-  .temp-info {
-    position: absolute;
-    top: 80%;
-    left: 18%;
-  }
+
   &:hover {
     img {
       opacity: 1;
       transition: 0.2s;
     }
+
     .city-name {
       scale: 1.3;
-      background: rgba(240, 248, 255, 0.522);
+      background: rgba(240, 248, 255, 0.362);
       color: $clr1;
     }
     .temp {
-      background: rgba(240, 248, 255, 0.522);
+      scale: 1.3;
+      color: aliceblue;
     }
     .temp-info {
-      background: rgba(240, 248, 255, 0.522);
+      scale: 1.3;
+      color: aliceblue;
     }
   }
 }

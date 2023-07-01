@@ -31,7 +31,7 @@ async function query() {
     city.img =
       'https://images.unsplash.com/photo-1599340695274-f8a2f344174d?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w0Njc0NTN8MHwxfHJhbmRvbXx8fHx8fHx8fDE2ODc5MDE3NDl8&ixlib=rb-4.0.3&q=80&w=200'
 
-    return storageService.post('DefaultCity', city)
+    return storageService.post(Default_City_Key, city)
   } catch (error) {
     console.log('error:', error)
     console.log('refresh')
@@ -44,11 +44,12 @@ async function getFavCities() {
 
 async function saveCityToFavorites(city) {
   const cities = await getFavCities()
+  console.log('cities:', cities)
   if (!cities) return storageService.post(FAV_CITIES_KEY, [city])
-  const x = cities.find((Favcity) => Favcity._id === city)
-  if (!x) return null
-  cities.push(city)
-  return storageService.post(FAV_CITIES_KEY, cities)
+  const foundCity = cities.find((favCity) => favCity._id === city)
+  if (!foundCity) return null
+  console.log('here?')
+  return storageService.post(FAV_CITIES_KEY, foundCity)
 }
 
 async function searchCity(cityName = 'Tel Aviv') {

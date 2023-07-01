@@ -1,7 +1,9 @@
 <template>
-  <h3 class="city-name">{{ this.city.LocalizedName }}</h3>
-  <p class="temp">{{ this.city.temp }}</p>
-  <p class="temp-info">{{ this.city.WeatherText }}</p>
+  <div>
+    <h3 class="city-name">{{ this.city.LocalizedName }}</h3>
+    <p class="temp">{{ this.city.temp }}</p>
+    <p class="temp-info">{{ this.city.WeatherText }}</p>
+  </div>
   <img :src="this.city.img" :alt="this.city.LocalizedName" />
 </template>
 
