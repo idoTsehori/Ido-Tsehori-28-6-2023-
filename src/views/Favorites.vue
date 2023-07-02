@@ -1,7 +1,7 @@
 <template>
-  <section class="basic-container" v-if="favCities.length">
-    <h1 class="fav-cities-title">Favorite Cities</h1>
-    <div class="days-list">
+  <section class="basic-container fav-container" v-if="favCities.length">
+    <h1 class="fav-cities-title">Your Favorite Cities</h1>
+    <div class="fav-cities-list">
       <article v-for="city in favCities" :key="city._id" class="favCity">
         <CityPreview :city="city" @city-selected="setCurrCity" @removeFavCity="removeFavCity" />
       </article>
@@ -33,6 +33,7 @@ export default {
       return this.$store.getters.getFavCities
     },
   },
+
   components: {
     CityPreview,
   },

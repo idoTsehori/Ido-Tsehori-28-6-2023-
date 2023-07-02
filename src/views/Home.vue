@@ -8,7 +8,8 @@
         <div>
           <h3 class="city-name">{{ currCity.LocalizedName }}</h3>
           <h4 class="country-name">{{ currCity.Country.LocalizedName }}</h4>
-          <h4 class="city-temp">{{ currCity.temp }}</h4>
+          <!-- <h4 class="city-temp">{{ currCity.temp }}</h4> -->
+          <h4 class="city-temp">{{ formatTemperature }}</h4>
         </div>
       </div>
 
@@ -70,11 +71,9 @@ export default {
     currCity() {
       return this.$store.getters.getCurrCity
     },
-
     isCeliusTemp() {
       return this.$store.getters.isCeliusTemp
     },
-
     favoriteCities() {
       return this.$store.getters.getFavCities
     },
@@ -86,6 +85,12 @@ export default {
     },
     starColor() {
       return this.checkIfCurrCityIsFav ? 'white' : 'yellow'
+    },
+    formatTemperature() {
+      let temp = +this.currCity.temp.slice(0, -1)
+      if (!this.isCeliusTemp) temp = (temp * 9) / 5 + 32
+      const currTempSymbol = this.isCeliusTemp ? 'C' : 'F'
+      return `${temp}${currTempSymbol}`
     },
   },
 
