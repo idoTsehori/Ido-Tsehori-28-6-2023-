@@ -1,12 +1,10 @@
 <template>
   <el-menu :default-active="activeIndex" class="el-menu-demo" mode="horizontal">
     <div>
-      <!-- <el-menu-item> -->
       <img
         class="spinomenal-logo"
         src="https://spinomenal.com/wp-content/uploads/2021/01/spinomenal_logo.png"
         alt="spinomenal logo" />
-      <!-- </el-menu-item> -->
 
       <DarkModeToggle :darkMode="darkMode" />
       <el-switch
@@ -18,6 +16,7 @@
         active-text="Fahrenheit "
         inactive-text="Celius" />
     </div>
+
     <div>
       <el-menu-item index="/"><RouterLink to="/">Home</RouterLink></el-menu-item>
       <el-menu-item index="/favorites"
