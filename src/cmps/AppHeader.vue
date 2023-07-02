@@ -9,12 +9,16 @@
       <DarkModeToggle :darkMode="darkMode" />
     </div>
     <div>
-      <el-menu-item index="1"><RouterLink to="/">Home</RouterLink></el-menu-item>
-      <el-menu-item index="2"><RouterLink to="/favorites">Favorites</RouterLink></el-menu-item>
+      <el-menu-item index="/"><RouterLink to="/">Home</RouterLink></el-menu-item>
+      <el-menu-item index="/favorites"
+        ><RouterLink to="/favorites">Favorites</RouterLink></el-menu-item
+      >
       <el-sub-menu index="3">
         <template #title>About</template>
-        <el-menu-item index="4-1"><RouterLink to="/about">About me</RouterLink></el-menu-item>
-        <el-menu-item index="4-2">Wallak Nothing</el-menu-item>
+        <el-menu-item index="/about"><RouterLink to="/about">About me</RouterLink></el-menu-item>
+        <el-menu-item index="/video"
+          ><RouterLink to="/video">App demo video</RouterLink></el-menu-item
+        >
       </el-sub-menu>
     </div>
   </el-menu>
@@ -25,9 +29,22 @@ import DarkModeToggle from './DarkModeToggle.vue'
 export default {
   data() {
     return {
-      activeIndex: '1',
+      activeIndex: '/',
       darkMode: false,
     }
+  },
+  created() {
+    this.setActiveIndex()
+  },
+  methods: {
+    setActiveIndex() {
+      this.activeIndex = this.$route.path
+    },
+  },
+  watch: {
+    $route() {
+      this.setActiveIndex()
+    },
   },
   components: {
     DarkModeToggle,
