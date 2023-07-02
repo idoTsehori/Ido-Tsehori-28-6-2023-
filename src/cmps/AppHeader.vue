@@ -1,12 +1,22 @@
 <template>
   <el-menu :default-active="activeIndex" class="el-menu-demo" mode="horizontal">
     <div>
-      <el-menu-item>
-        <img
-          src="https://spinomenal.com/wp-content/uploads/2021/01/spinomenal_logo.png"
-          alt="spinomental logo" />
-      </el-menu-item>
+      <!-- <el-menu-item> -->
+      <img
+        class="spinomenal-logo"
+        src="https://spinomenal.com/wp-content/uploads/2021/01/spinomenal_logo.png"
+        alt="spinomenal logo" />
+      <!-- </el-menu-item> -->
+
       <DarkModeToggle :darkMode="darkMode" />
+      <el-switch
+        v-model="isCelius"
+        @change="toggleCelius"
+        class="ml-2"
+        inline-prompt
+        style="--el-switch-on-color: #a04e9d; --el-switch-off-color: #33bdd6"
+        active-text="Fahrenheit "
+        inactive-text="Celius" />
     </div>
     <div>
       <el-menu-item index="/"><RouterLink to="/">Home</RouterLink></el-menu-item>
@@ -26,17 +36,22 @@
 
 <script>
 import DarkModeToggle from './DarkModeToggle.vue'
+
 export default {
   data() {
     return {
       activeIndex: '/',
       darkMode: false,
+      isCelius: false,
     }
   },
   created() {
     this.setActiveIndex()
   },
   methods: {
+    toggleCelius() {
+      this.$store.dispatch({ type: 'toggleTempMode' })
+    },
     setActiveIndex() {
       this.activeIndex = this.$route.path
     },

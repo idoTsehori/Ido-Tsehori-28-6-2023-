@@ -11,13 +11,14 @@
 @import 'basics/links';
 @import 'basics/forms';
 
+// Page Components
+@import 'cmps/Home';
+@import 'cmps/Favorites';
+@import 'cmps/About';
+
 // Components
 @import 'cmps/AppHeader';
-@import 'cmps/Home';
 @import 'cmps/Animation';
 @import 'cmps/CitySearch';
 @import 'cmps/CityPreview';
 @import 'cmps/DarkModeToggle';
-
-@import 'cmps/Favorites';
-@import 'cmps/About';

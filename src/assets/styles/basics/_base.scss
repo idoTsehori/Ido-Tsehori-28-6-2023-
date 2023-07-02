@@ -35,16 +35,6 @@ h6 {
   line-height: 1;
 }
 
-// section,
-// main,
-// footer {
-//   // padding: 5px;
-// }
-
-// img {
-//   width: 100%;
-// }
-
 p {
   margin: 0 0 1em;
   max-width: 40ch;
@@ -52,7 +42,5 @@ p {
 
 a {
   text-decoration: none;
-}
-a:hover {
-  text-decoration: underline;
+  color: $clr3;
 }

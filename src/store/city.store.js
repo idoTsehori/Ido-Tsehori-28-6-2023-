@@ -5,6 +5,7 @@ export const cityStore = {
     return {
       currCity: null,
       favCities: [],
+      isCeliusTemp: true,
     }
   },
   mutations: {
@@ -18,6 +19,9 @@ export const cityStore = {
 
     setCity(state, { city }) {
       state.currCity = city
+    },
+    toggleTempMode(state) {
+      state.isCeliusTemp = !state.isCeliusTemp
     },
 
     removeToy({ toys }, { toyId }) {
@@ -40,6 +44,9 @@ export const cityStore = {
 
     getFavCities({ favCities }) {
       return favCities
+    },
+    isCeliusTemp({ isCeliusTemp }) {
+      return isCeliusTemp
     },
   },
 
@@ -77,6 +84,10 @@ export const cityStore = {
     async removeFavCity({ commit }, { cityId }) {
       const cities = await cityService.removeFavCity(cityId)
       commit({ type: 'setFavCities', cities })
+    },
+
+    toggleTempMode({ commit }) {
+      commit({ type: 'toggleTempMode' })
     },
   },
 }

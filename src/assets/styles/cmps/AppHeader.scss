@@ -1,14 +1,24 @@
 .el-menu--horizontal {
+  .spinomenal-logo {
+    margin-left: 1.3em;
+    width: 13em;
+  }
+  li {
+    padding: 0;
+    a {
+      width: 5em;
+      text-align: center;
+    }
+  }
   justify-content: space-between;
   div {
     display: flex;
     align-items: center;
     gap: 4em;
-    div,
-    a {
-      color: $clr3;
-      text-decoration: none;
-    }
+    // div,
+    // a {
+    //   color: $clr3;
+    // }
     & .is-active {
       border-bottom: 2px solid $clr2;
     }

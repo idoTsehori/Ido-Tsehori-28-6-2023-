@@ -29,7 +29,7 @@
 
     <div v-if="currCity.days.length" class="days-list">
       <article :key="day.EpochDate" v-for="day in currCity.days" class="day">
-        <DayPreview :day="day" />
+        <DayPreview :isCeliusTemp="isCeliusTemp" :day="day" />
       </article>
     </div>
   </section>
@@ -70,6 +70,11 @@ export default {
     currCity() {
       return this.$store.getters.getCurrCity
     },
+
+    isCeliusTemp() {
+      return this.$store.getters.isCeliusTemp
+    },
+
     favoriteCities() {
       return this.$store.getters.getFavCities
     },
