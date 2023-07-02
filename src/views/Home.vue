@@ -87,7 +87,7 @@ export default {
   components: {
     CitySearch,
     DayPreview,
-    FavoriteBtn,
+    // FavoriteBtn,
   },
 }
 </script>

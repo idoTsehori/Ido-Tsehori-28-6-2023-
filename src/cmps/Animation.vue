@@ -19,9 +19,7 @@ export default {
       setTimeout(() => {
         this.isVisible = false
       }, 3000)
-    }, 16500)
+    }, 17800)
   },
 }
 </script>
-
-<style></style>

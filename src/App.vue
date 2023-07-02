@@ -2,7 +2,7 @@
   <main>
     <AppHeader />
     <RouterView />
-    <Animation />
+    <Animation v-if="shouldShowAnimation" />
   </main>
 </template>
 
@@ -19,6 +19,12 @@ export default {
   components: {
     AppHeader,
     Animation,
+  },
+
+  computed: {
+    shouldShowAnimation() {
+      return this.$route.path !== '/about'
+    },
   },
 }
 </script>

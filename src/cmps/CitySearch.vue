@@ -39,7 +39,7 @@ export default {
     return {
       userInput: '',
       suggestions: null,
-      debouncedSearchCities: debounce(this.searchCities, 1000),
+      debouncedSearchCities: debounce(this.searchCities, 900),
     }
   },
 
@@ -49,8 +49,6 @@ export default {
     },
     searchCity(ev) {
       ev.preventDefault()
-      console.log('this.userInput', this.userInput)
-      this.$emit('changeCity', this.userInput)
       this.suggestions = null
       this.userInput = ''
     },

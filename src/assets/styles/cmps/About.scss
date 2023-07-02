@@ -1,0 +1,19 @@
+.about-container {
+  padding: 0.7em;
+  display: flex;
+  background-color: aliceblue;
+  margin-block-start: 2.7em;
+  justify-content: center;
+  align-items: center;
+  gap: 9em;
+
+  .profile-img {
+    width: 600px;
+    border-radius: 10px;
+  }
+  .contact {
+    display: flex;
+    align-items: center;
+    justify-content: space-around;
+  }
+}
