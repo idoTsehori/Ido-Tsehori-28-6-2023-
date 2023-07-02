@@ -17,9 +17,31 @@ export default {
   data() {
     return {}
   },
-  methods: {},
-  computed: {},
-  created() {},
-  components: {},
+  methods: {
+    removeFavCity() {
+      const cityId = this.currCity._id
+      this.$store.dispatch({ type: 'removeFavCity', cityId })
+    },
+
+    toggleFavorite() {
+      const cityId = this.currCity._id
+      const city = this.currCity
+      if (this.checkIfCurrCityIsFav) this.$store.dispatch({ type: 'removeFavCity', cityId })
+      else this.$store.dispatch({ type: 'addCityToFavorites', city })
+    },
+  },
+  computed: {
+    computed: {
+      checkIfCurrCityIsFav() {
+        return this.favoriteCities.includes(this.currCity)
+      },
+      favoriteButtonLabel() {
+        return this.checkIfCurrCityIsFav ? 'Remove from Favorites' : 'Add to Favorites'
+      },
+      starColor() {
+        return this.checkIfCurrCityIsFav ? 'white' : 'yellow'
+      },
+    },
+  },
 }
 </script>
