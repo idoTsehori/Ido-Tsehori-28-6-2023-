@@ -12,26 +12,17 @@
         </div>
       </div>
 
-      <div v-if="!checkIfCurrCityIsFav" class="add-favorite" style="margin-top: 1em">
-        <button @click="addCityToFavorites">
+      <div class="favorite-btn" style="margin-top: 1em">
+        <button @click="toggleFavorite">
           <svg viewBox="0 0 1024 1024" xmlns="http://www.w3.org/2000/svg" data-v-ea893728="">
             <path
-              fill="currentColor"
+              :fill="starColor"
               d="M283.84 867.84 512 747.776l228.16 119.936a6.4 6.4 0 0 0 9.28-6.72l-43.52-254.08 184.512-179.904a6.4 6.4 0 0 0-3.52-10.88l-255.104-37.12L517.76 147.904a6.4 6.4 0 0 0-11.52 0L392.192 379.072l-255.104 37.12a6.4 6.4 0 0 0-3.52 10.88L318.08 606.976l-43.584 254.08a6.4 6.4 0 0 0 9.28 6.72z"></path>
           </svg>
-          Add to Favorites
+          {{ favoriteButtonLabel }}
         </button>
       </div>
-      <div v-else class="add-favorite" style="margin-top: 1em">
-        <button @click="removeFavCity">
-          <svg viewBox="0 0 1024 1024" xmlns="http://www.w3.org/2000/svg" data-v-ea893728="">
-            <path
-              fill="currentColor"
-              d="m512 747.84 228.16 119.936a6.4 6.4 0 0 0 9.28-6.72l-43.52-254.08 184.512-179.904a6.4 6.4 0 0 0-3.52-10.88l-255.104-37.12L517.76 147.904a6.4 6.4 0 0 0-11.52 0L392.192 379.072l-255.104 37.12a6.4 6.4 0 0 0-3.52 10.88L318.08 606.976l-43.584 254.08a6.4 6.4 0 0 0 9.28 6.72L512 747.84zM313.6 924.48a70.4 70.4 0 0 1-102.144-74.24l37.888-220.928L88.96 472.96A70.4 70.4 0 0 1 128 352.896l221.76-32.256 99.2-200.96a70.4 70.4 0 0 1 126.208 0l99.2 200.96 221.824 32.256a70.4 70.4 0 0 1 39.04 120.064L774.72 629.376l37.888 220.928a70.4 70.4 0 0 1-102.144 74.24L512 820.096l-198.4 104.32z"></path>
-          </svg>
-          remove from Favorites
-        </button>
-      </div>
+      <!-- <FavoriteBtn :currCity="currCity" style="margin-top: 1em" /> -->
     </div>
 
     <h1 class="todays-title">{{ currCity.WeatherText }}</h1>
@@ -47,6 +38,7 @@
 <script>
 import CitySearch from '../cmps/CitySearch.vue'
 import DayPreview from '../cmps/DayPreview.vue'
+// import FavoriteBtn from '../cmps/FavoriteBtn.vue'
 
 export default {
   name: 'Home',
@@ -65,6 +57,13 @@ export default {
       const cityId = this.currCity._id
       this.$store.dispatch({ type: 'removeFavCity', cityId })
     },
+
+    toggleFavorite() {
+      const cityId = this.currCity._id
+      const city = this.currCity
+      if (this.checkIfCurrCityIsFav) this.$store.dispatch({ type: 'removeFavCity', cityId })
+      else this.$store.dispatch({ type: 'addCityToFavorites', city })
+    },
   },
 
   computed: {
@@ -77,11 +76,18 @@ export default {
     checkIfCurrCityIsFav() {
       return this.favoriteCities.includes(this.currCity)
     },
+    favoriteButtonLabel() {
+      return this.checkIfCurrCityIsFav ? 'Remove from Favorites' : 'Add to Favorites'
+    },
+    starColor() {
+      return this.checkIfCurrCityIsFav ? 'white' : 'yellow'
+    },
   },
 
   components: {
     CitySearch,
     DayPreview,
+    FavoriteBtn,
   },
 }
 </script>

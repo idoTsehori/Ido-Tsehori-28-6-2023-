@@ -31,7 +31,7 @@
     }
   }
 
-  .add-favorite {
+  .favorite-btn {
     button {
       border-radius: 15px;
       font-size: 1em;
@@ -78,7 +78,7 @@ body.dark-mode {
     background-color: rgb(145, 145, 142);
   }
 
-  .add-favorite {
+  .favorite-btn {
     button {
       background-color: $clr3;
     }
