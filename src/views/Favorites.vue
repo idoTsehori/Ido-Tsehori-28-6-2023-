@@ -8,7 +8,9 @@
     </div>
   </section>
 
-  <section v-else>There's no Favorite Cities</section>
+  <section v-else>
+    <h1>There's no Favorite Cities</h1>
+  </section>
 </template>
 
 <script>
@@ -36,5 +38,3 @@ export default {
   },
 }
 </script>
-
-<style></style>

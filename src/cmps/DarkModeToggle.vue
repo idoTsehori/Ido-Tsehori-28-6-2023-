@@ -9,6 +9,12 @@
 <script>
 export default {
   name: 'DarkModeToggle',
+  props: {
+    darkMode: {
+      type: Boolean,
+      required: true,
+    },
+  },
   methods: {
     toggleMode() {
       document.body.classList.toggle('dark-mode')

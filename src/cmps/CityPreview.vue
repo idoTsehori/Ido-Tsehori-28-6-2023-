@@ -26,4 +26,3 @@ export default {
   emits: ['city-selected', 'removeFavCity'],
 }
 </script>
-<style></style>

@@ -69,14 +69,13 @@ export const cityStore = {
     },
 
     addCityToFavorites({ commit }, { city }) {
-      return cityService.saveCityToFavorites(city).then((cities) => {
+      return cityService.saveCityToFavorites(city).then(() => {
         commit({ type: 'addCityToFavorites', city })
       })
     },
 
     async removeFavCity({ commit }, { cityId }) {
       const cities = await cityService.removeFavCity(cityId)
-      console.log('cities:', cities)
       commit({ type: 'setFavCities', cities })
     },
   },

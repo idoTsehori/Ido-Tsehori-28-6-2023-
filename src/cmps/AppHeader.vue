@@ -6,7 +6,7 @@
           src="https://spinomenal.com/wp-content/uploads/2021/01/spinomenal_logo.png"
           alt="spinomental logo" />
       </el-menu-item>
-      <DarkModeToggle />
+      <DarkModeToggle :darkMode="darkMode" />
     </div>
     <div>
       <el-menu-item index="1"><RouterLink to="/">Home</RouterLink></el-menu-item>
@@ -26,9 +26,9 @@ export default {
   data() {
     return {
       activeIndex: '1',
+      darkMode: false,
     }
   },
-
   components: {
     DarkModeToggle,
   },
