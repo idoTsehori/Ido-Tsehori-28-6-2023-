@@ -8,7 +8,7 @@
     "dev": "vite",
     "build": "vite build",
     "preview": "vite preview",
-    "deploy": "vite build && gh-pages -d dist"
+    "deploy": "vite build && gh-pages -b gh-pages -d dist"
   },
   "dependencies": {
     "@element-plus/icons-vue": "^2.1.0",
