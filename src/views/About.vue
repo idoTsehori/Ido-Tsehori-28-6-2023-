@@ -1,6 +1,6 @@
 <template>
   <section class="about-container">
-    <div>
+    <div class="text-container">
       <h1>Hey Spinomenal team!</h1>
       <p>
         I'm Ido, a full stack/frontend developer. I am a fast learner, highly motivated, hardworking
@@ -28,9 +28,8 @@
         <span>050-7121125</span>
       </div>
     </div>
-    <div>
-      <img class="profile-img" src="../assets//imgs/me_and_computer.jpg" alt="ido tsehori img" />
-    </div>
+
+    <img class="profile-img" src="../assets//imgs/me_and_computer.jpg" alt="ido tsehori img" />
   </section>
 </template>
 

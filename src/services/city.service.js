@@ -32,8 +32,7 @@ async function query() {
 
     return storageService.post(Default_City_Key, city)
   } catch (error) {
-    console.log('error:', error)
-    console.log('refresh')
+    throw new Error(error)
   }
 }
 
@@ -69,10 +68,14 @@ async function searchCity(cityName = 'Tel Aviv') {
 }
 
 async function getCityImg(city) {
-  const { data } = await axios(
-    `https://api.unsplash.com/photos/random?query=${city}-city&client_id=${UNSPLASH_KEY}`
-  )
-  return data.urls.thumb
+  try {
+    const { data } = await axios(
+      `https://api.unsplash.com/photos/random?query=${city}-city&client_id=${UNSPLASH_KEY}`
+    )
+    return data.urls.thumb
+  } catch (error) {
+    throw new Error(error)
+  }
 }
 
 async function setCityTemp(key = '215854') {
@@ -86,7 +89,7 @@ async function setCityTemp(key = '215854') {
     return { temp: Temperature.Metric.Value + Temperature.Metric.Unit, WeatherText }
   } catch (error) {
     // useToast().error('Error while fetching TEMP, please refresh')
-    console.error(error)
+    throw new Error(error)
   }
 }
 
@@ -97,8 +100,7 @@ async function setCity5DaysTemp(key = '215854') {
     )
     return Array.from(data.DailyForecasts)
   } catch (error) {
-    console.error(error)
-    // useToast().error('Error while fetching Citys 5 Days Temp, please refresh')
+    throw new Error(error)
   }
 }
 
@@ -112,10 +114,9 @@ async function searchCitySuggestions(val) {
         language: 'en',
       },
     })
-    console.log('res:', res)
     return res.data
   } catch (error) {
-    console.error(error)
+    throw new Error(error)
   }
 }
 
@@ -135,15 +136,7 @@ async function save(city) {
 
     return storageService.post('DefaultCity', newCity)
   } catch (error) {
-    this.$swal.fire({
-      position: 'top-end',
-      icon: 'error',
-      title: `error saving the city`,
-      showConfirmButton: false,
-      timer: 1000,
-    })
-    console.log('error:', error)
-    console.log('refresh')
+    throw new Error(error)
   }
 }
 

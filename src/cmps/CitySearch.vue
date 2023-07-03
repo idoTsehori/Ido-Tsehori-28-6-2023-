@@ -49,6 +49,7 @@ export default {
     },
     searchCity(ev) {
       ev.preventDefault()
+      this.selectSuggestion(this.userInput)
       this.suggestions = null
       this.userInput = ''
     },

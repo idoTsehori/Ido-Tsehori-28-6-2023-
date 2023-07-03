@@ -8,7 +8,6 @@
         <div>
           <h3 class="city-name">{{ currCity.LocalizedName }}</h3>
           <h4 class="country-name">{{ currCity.Country.LocalizedName }}</h4>
-          <!-- <h4 class="city-temp">{{ currCity.temp }}</h4> -->
           <h4 class="city-temp">{{ formatTemperature }}</h4>
         </div>
       </div>
@@ -23,7 +22,6 @@
           {{ favoriteButtonLabel }}
         </button>
       </div>
-      <!-- <FavoriteBtn :currCity="currCity" style="margin-top: 1em" /> -->
     </div>
 
     <h1 class="todays-title">{{ currCity.WeatherText }}</h1>
@@ -39,31 +37,41 @@
 <script>
 import CitySearch from '../cmps/CitySearch.vue'
 import DayPreview from '../cmps/DayPreview.vue'
-// import FavoriteBtn from '../cmps/FavoriteBtn.vue'
 
 export default {
   name: 'Home',
 
   methods: {
-    changeCity(newCity) {
-      this.$store.dispatch({ type: 'changeCity', newCity })
-    },
-
-    addCityToFavorites() {
-      const city = this.currCity
-      this.$store.dispatch({ type: 'addCityToFavorites', city })
-    },
-
-    removeFavCity() {
-      const cityId = this.currCity._id
-      this.$store.dispatch({ type: 'removeFavCity', cityId })
+    async changeCity(newCity) {
+      try {
+        await this.$store.dispatch('changeCity', { newCity })
+      } catch (error) {
+        this.showNotification(error.message, 'error')
+      }
     },
 
     toggleFavorite() {
       const cityId = this.currCity._id
       const city = this.currCity
-      if (this.checkIfCurrCityIsFav) this.$store.dispatch({ type: 'removeFavCity', cityId })
-      else this.$store.dispatch({ type: 'addCityToFavorites', city })
+      try {
+        if (this.checkIfCurrCityIsFav) this.$store.dispatch({ type: 'removeFavCity', cityId })
+        else this.$store.dispatch({ type: 'addCityToFavorites', city })
+        const title = this.checkIfCurrCityIsFav ? 'Removed favorite' : 'Added favorite'
+        this.showNotification(title, 'success')
+      } catch (error) {
+        this.showNotification('Error', 'error')
+      }
+    },
+
+    showNotification(title, icon) {
+      this.$swal({
+        title,
+        width: '20%',
+        icon,
+        position: 'bottom-end',
+        timer: 1750,
+        timerProgressBar: true,
+      })
     },
   },
 

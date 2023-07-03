@@ -71,3 +71,19 @@ body.dark-mode {
     background-color: darken($clr3, 10%);
   }
 }
+
+@include for-mobile-layout {
+  .city-search {
+    // margin: auto;
+    background: none;
+    margin-block-start: 1em;
+    margin-block-end: 1em;
+
+    // position: relative;
+    // display: flex;
+    // justify-content: center;
+    // background-color: lighten($clr1, 42%);
+    // width: max-content;
+    // padding: 0.5em;
+  }
+}

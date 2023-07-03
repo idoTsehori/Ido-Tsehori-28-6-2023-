@@ -20,20 +20,9 @@ export const cityStore = {
     setCity(state, { city }) {
       state.currCity = city
     },
+
     toggleTempMode(state) {
       state.isCeliusTemp = !state.isCeliusTemp
-    },
-
-    removeToy({ toys }, { toyId }) {
-      const idx = toys.findIndex((toy) => toy._id === toyId)
-      toys.splice(idx, 1)
-    },
-    updateToy({ toys }, { toy }) {
-      const idx = toys.findIndex((currToy) => currToy._id === toy._id)
-      toys.splice(idx, 1, toy)
-    },
-    addToy(state, { toy }) {
-      state.toys.unshift(toy)
     },
   },
 
@@ -68,11 +57,25 @@ export const cityStore = {
       })
     },
 
-    changeCity({ commit }, { newCity }) {
-      return cityService.save(newCity).then((city) => {
-        if (city) commit({ type: 'setCity', city })
-        else console.log(`${newCity} is not found`)
-      })
+    // changeCity({ commit }, { newCity }) {
+    //   return cityService.save(newCity).then((city) => {
+    //     if (city) commit({ type: 'setCity', city })
+    //     else throw new Error(`${newCity} is not found dude!`)
+    //   })
+    // },
+
+    async changeCity({ commit }, { newCity }) {
+      try {
+        const city = await cityService.save(newCity)
+        if (city) {
+          commit({ type: 'setCity', city })
+          return city
+        } else {
+          throw new Error(`${newCity} is not found`)
+        }
+      } catch (error) {
+        throw error
+      }
     },
 
     addCityToFavorites({ commit }, { city }) {

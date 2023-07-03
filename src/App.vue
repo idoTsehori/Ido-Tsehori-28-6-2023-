@@ -1,6 +1,6 @@
 <template>
-  <main>
-    <AppHeader />
+  <main class="main-container">
+    <AppHeader class="full" />
     <RouterView />
     <Animation v-if="shouldShowAnimation" />
   </main>

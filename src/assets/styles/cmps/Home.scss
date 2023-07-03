@@ -1,5 +1,3 @@
-
-
 .city-details {
   display: flex;
   justify-content: space-between;
@@ -37,26 +35,25 @@
 
 .todays-title {
   text-align: center;
-  font-size: 2.5em;
   margin: 0.8em 0 0.8em 0;
 }
 
 .days-list {
   display: flex;
   flex-wrap: wrap;
-  justify-content: space-evenly;
 
+  justify-content: space-evenly;
+  gap: 1em;
   .day {
     background-color: lighten($clr1, 14%);
     color: aliceblue;
-    font-size: 1.1em;
     flex-direction: column;
     text-align: center;
     border: 2px solid rgb(195, 196, 191);
     border-radius: 15px;
     display: flex;
-    margin: 0.5em;
-    padding: 0.5em 2.5em 0.5em 2.5em;
+    margin-bottom: 0.5em;
+    padding: 0.7em;
     box-shadow: 0px 10px 15px -3px rgba(0, 0, 0, 0.1), 0px 10px 15px -3px rgba(0, 0, 0, 0.1);
     &:hover {
       transition: 0.5s;
@@ -83,6 +80,15 @@ body.dark-mode {
     &:hover {
       transition: 0.5s;
       background-color: $clr1;
+    }
+  }
+}
+
+@include for-mobile-layout {
+  .days-list {
+    flex-wrap: nowrap;
+    .day {
+      padding: 0;
     }
   }
 }

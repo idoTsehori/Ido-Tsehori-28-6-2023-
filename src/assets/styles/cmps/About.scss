@@ -1,19 +1,51 @@
 .about-container {
-  padding: 0.7em;
+  margin-block-start: 1em;
+  padding: 1em;
   display: flex;
   background-color: aliceblue;
-  margin-block-start: 2.7em;
   justify-content: center;
   align-items: center;
-  gap: 9em;
+  gap: 20px;
+  border-radius: 15px;
+
+  .text-container {
+    .contact {
+      display: flex;
+      align-items: center;
+      justify-content: space-around;
+    }
+  }
 
   .profile-img {
-    width: 600px;
+    width: 50%;
     border-radius: 10px;
   }
-  .contact {
+}
+
+//MOBILE
+@include for-mobile-layout {
+  .about-container {
+    margin-block-start: 0.5em;
+    padding: 1em;
     display: flex;
-    align-items: center;
-    justify-content: space-around;
+    background-color: aliceblue;
+    flex-direction: column;
+    gap: 10px;
+    border-radius: 15px;
+
+    .text-container {
+      font-size: 0.8em;
+      .contact {
+        display: flex;
+        align-items: center;
+        justify-content: space-around;
+        font-size: 0.7em;
+      }
+    }
+
+    .profile-img {
+      width: 100%;
+      border-radius: 10px;
+    }
   }
 }
