@@ -50,7 +50,7 @@ async function saveCityToFavorites(city) {
 }
 
 async function searchCity(cityName = 'Tel Aviv') {
-  const url = 'http://dataservice.accuweather.com/locations/v1/cities/search'
+  const url = 'https://dataservice.accuweather.com/locations/v1/cities/search'
   try {
     const { data } = await axios(url, {
       params: {
@@ -78,7 +78,7 @@ async function getCityImg(city) {
 async function setCityTemp(key = '215854') {
   try {
     const { data } = await axios(
-      `http://dataservice.accuweather.com/currentconditions/v1/${key}?apikey=${API_KEY}`
+      `https://dataservice.accuweather.com/currentconditions/v1/${key}?apikey=${API_KEY}`
     )
     const { WeatherText, Temperature } = data[0]
     {
@@ -93,7 +93,7 @@ async function setCityTemp(key = '215854') {
 async function setCity5DaysTemp(key = '215854') {
   try {
     const { data } = await axios(
-      `http://dataservice.accuweather.com/forecasts/v1/daily/5day//${key}?apikey=${API_KEY}`
+      `https://dataservice.accuweather.com/forecasts/v1/daily/5day//${key}?apikey=${API_KEY}`
     )
     return Array.from(data.DailyForecasts)
   } catch (error) {
@@ -104,7 +104,7 @@ async function setCity5DaysTemp(key = '215854') {
 
 async function searchCitySuggestions(val) {
   try {
-    const url = 'http://dataservice.accuweather.com/locations/v1/cities/autocomplete'
+    const url = 'https://dataservice.accuweather.com/locations/v1/cities/autocomplete'
     const res = await axios.get(url, {
       params: {
         apikey: API_KEY,
