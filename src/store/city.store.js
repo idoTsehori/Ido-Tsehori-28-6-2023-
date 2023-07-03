@@ -57,13 +57,6 @@ export const cityStore = {
       })
     },
 
-    // changeCity({ commit }, { newCity }) {
-    //   return cityService.save(newCity).then((city) => {
-    //     if (city) commit({ type: 'setCity', city })
-    //     else throw new Error(`${newCity} is not found dude!`)
-    //   })
-    // },
-
     async changeCity({ commit }, { newCity }) {
       try {
         const city = await cityService.save(newCity)
