@@ -31,6 +31,7 @@ const routes = [
 
 export const router = createRouter({
   routes,
-  history: createWebHashHistory(),
+  history: createWebHashHistory('/Ido-Tsehori-28-6-2023-/'),
   // base: process.env.BASE_URL,
+  base: '/Ido-Tsehori-28-6-2023-/',
 })
